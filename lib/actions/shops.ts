@@ -5,7 +5,6 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { getUser, getProfile } from "./auth";
-import type { Shop } from "@/lib/types";
 
 const shopSchema = z.object({
   name: z.string().min(2, "Shop name must be at least 2 characters"),

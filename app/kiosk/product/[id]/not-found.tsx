@@ -26,8 +26,8 @@ export default function ProductNotFound() {
 
           <h1 className="text-2xl font-bold mb-2">Product Not Found</h1>
           <p className="text-muted-foreground mb-8">
-            Sorry, we couldn't find the product you're looking for. It may have
-            been removed or the link might be incorrect.
+            Sorry, we could not find the product you are looking for. It may
+            have been removed or the link might be incorrect.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">

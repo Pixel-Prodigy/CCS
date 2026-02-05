@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,17 +17,13 @@ import {
   Sparkles,
   ShoppingBag,
   Clock,
-  TrendingUp,
   CheckCircle2,
   ArrowRight,
   Zap,
-  Shield,
   BarChart3,
   Smartphone,
-  RefreshCw,
   XCircle,
   Package,
-  Camera,
   Monitor,
   Shirt,
   Star,
@@ -459,20 +456,22 @@ export default function HomePage() {
                   whileInView={{ x: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.5 }}
-                  className="flex-[1.5] rounded-2xl bg-gradient-to-b from-violet-500/20 to-primary/20 backdrop-blur flex flex-col items-center justify-center border border-white/10 p-4"
+                  className="flex-[1.5] rounded-2xl bg-gradient-to-b from-violet-500/20 to-primary/20 backdrop-blur flex flex-col items-center justify-center border border-white/10 p-4 overflow-hidden"
                 >
                   <motion.div
                     animate={{ scale: [1, 1.02, 1] }}
                     transition={{ duration: 3, repeat: Infinity }}
-                    className="w-24 h-32 md:w-36 md:h-48 rounded-xl bg-gradient-to-br from-violet-500/30 to-primary/30 flex items-center justify-center mb-3"
+                    className="relative w-full h-full rounded-xl overflow-hidden"
                   >
-                    <Users className="w-12 h-12 md:w-16 md:h-16 text-violet-500/70" />
+                    <Image
+                      src="/360_F_341034617_4e96ntzBPpqjGxbUoHEVAp6NrH6KJwbE.jpg"
+                      alt="Model wearing outfit"
+                      fill
+                      className="object-cover object-top"
+                    />
                   </motion.div>
-                  <p className="text-sm md:text-base text-muted-foreground text-center">
+                  <p className="text-sm md:text-base text-muted-foreground text-center mt-3">
                     Model Preview
-                  </p>
-                  <p className="text-xs text-muted-foreground/70 mt-1">
-                    See how it looks
                   </p>
                 </motion.div>
               </div>
@@ -485,18 +484,20 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Floating badges */}
+            {/* Floating badges - smaller on mobile */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.7 }}
-              className="absolute -right-4 top-1/4 md:-right-8"
+              className="absolute right-2 top-2 md:-right-8 md:top-1/4"
             >
-              <div className="bg-background border rounded-xl px-4 py-3 shadow-lg">
-                <div className="flex items-center gap-2">
-                  <Package className="w-5 h-5 text-green-500" />
-                  <span className="font-semibold">Easy Catalog</span>
+              <div className="bg-background border rounded-lg md:rounded-xl px-2 py-1.5 md:px-4 md:py-3 shadow-lg">
+                <div className="flex items-center gap-1.5 md:gap-2">
+                  <Package className="w-3.5 h-3.5 md:w-5 md:h-5 text-green-500" />
+                  <span className="text-xs md:text-base font-semibold">
+                    Easy Catalog
+                  </span>
                 </div>
               </div>
             </motion.div>
@@ -506,12 +507,14 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.9 }}
-              className="absolute -left-4 bottom-1/4 md:-left-8"
+              className="absolute left-2 bottom-2 md:-left-8 md:bottom-1/4"
             >
-              <div className="bg-background border rounded-xl px-4 py-3 shadow-lg">
-                <div className="flex items-center gap-2">
-                  <Monitor className="w-5 h-5 text-blue-500" />
-                  <span className="font-semibold">Kiosk Ready</span>
+              <div className="bg-background border rounded-lg md:rounded-xl px-2 py-1.5 md:px-4 md:py-3 shadow-lg">
+                <div className="flex items-center gap-1.5 md:gap-2">
+                  <Monitor className="w-3.5 h-3.5 md:w-5 md:h-5 text-blue-500" />
+                  <span className="text-xs md:text-base font-semibold">
+                    Kiosk Ready
+                  </span>
                 </div>
               </div>
             </motion.div>

@@ -3,6 +3,9 @@ import { getShopStats } from "@/lib/actions/shops";
 import { redirect } from "next/navigation";
 import { DashboardContent } from "@/components/admin/dashboard-content";
 
+// Force dynamic rendering to prevent prerender errors with auth
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboardPage() {
   const user = await getUser();
 

@@ -2,6 +2,9 @@ import { notFound } from "next/navigation";
 import { ProductForm } from "@/components/admin/product-form";
 import { getProduct } from "@/lib/actions/products";
 
+// Force dynamic rendering to prevent prerender errors with auth
+export const dynamic = "force-dynamic";
+
 interface EditProductPageProps {
   params: Promise<{ id: string }>;
 }

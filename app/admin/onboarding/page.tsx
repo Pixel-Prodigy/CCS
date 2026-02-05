@@ -2,6 +2,9 @@ import { redirect } from "next/navigation";
 import { getUser, getOnboardingStatus } from "@/lib/actions/auth";
 import { OnboardingWizard } from "@/components/admin/onboarding-wizard";
 
+// Force dynamic rendering to prevent prerender errors with auth
+export const dynamic = "force-dynamic";
+
 export default async function OnboardingPage() {
   const user = await getUser();
 

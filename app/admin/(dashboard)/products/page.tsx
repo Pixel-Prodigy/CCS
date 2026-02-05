@@ -4,6 +4,9 @@ import { ProductTable } from "@/components/admin/product-table";
 import { getProducts } from "@/lib/actions/products";
 import { Plus } from "lucide-react";
 
+// Force dynamic rendering to prevent prerender errors with auth
+export const dynamic = "force-dynamic";
+
 export default async function ProductsPage() {
   const products = await getProducts();
 

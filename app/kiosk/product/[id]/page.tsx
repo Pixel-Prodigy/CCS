@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { getProduct, getRelatedProducts } from "@/lib/actions/products";
+import { getProduct } from "@/lib/actions/products";
 import { formatPrice, cn } from "@/lib/utils";
 import {
   Package,
@@ -11,7 +11,6 @@ import {
   Check,
   AlertTriangle,
   XCircle,
-  Copy,
   Tag,
   Palette,
   Ruler,

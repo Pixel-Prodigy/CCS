@@ -1,5 +1,8 @@
 import { ProductForm } from "@/components/admin/product-form";
 
+// Force dynamic rendering to prevent prerender errors
+export const dynamic = "force-dynamic";
+
 export default function NewProductPage() {
   return (
     <div className="max-w-2xl mx-auto space-y-6">

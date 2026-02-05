@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useState, useEffect } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -219,16 +219,48 @@ type FilterTab = "main" | "type" | "size" | "color" | "style" | "price";
 const MIN_PRICE = 0;
 const MAX_PRICE = 10000;
 
+// Quick filter chips for horizontal scroll - moved outside to prevent recreation
+interface QuickFiltersProps {
+  activeType: string | null;
+  activeSize: string | null;
+  toggleFilter: (key: string, value: string) => void;
+}
+
+function QuickFilters({ activeType, activeSize, toggleFilter }: QuickFiltersProps) {
+  return (
+    <div className="flex items-center gap-2.5 overflow-x-auto hide-scrollbar pb-1 -mx-1 px-1">
+      {/* Types - Show first 4 */}
+      {PRODUCT_TYPES.slice(0, 4).map((type) => (
+        <FilterChip
+          key={type}
+          label={type}
+          isActive={activeType === type}
+          onClick={() => toggleFilter("type", type)}
+        />
+      ))}
+
+      {/* Divider */}
+      <div className="w-px h-6 bg-border/60 mx-1 shrink-0" />
+
+      {/* Sizes - Show first 4 */}
+      {PRODUCT_SIZES.slice(0, 4).map((size) => (
+        <FilterChip
+          key={size}
+          label={size}
+          isActive={activeSize === size}
+          onClick={() => toggleFilter("size", size)}
+          className="px-3.5 min-w-[3rem]"
+        />
+      ))}
+    </div>
+  );
+}
+
 export function FilterBar() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<FilterTab>("main");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [priceRange, setPriceRange] = useState<[number, number]>([
-    MIN_PRICE,
-    MAX_PRICE,
-  ]);
 
   const activeType = searchParams.get("type");
   const activeColor = searchParams.get("color");
@@ -238,14 +270,13 @@ export function FilterBar() {
   const activeMinPrice = searchParams.get("minPrice");
   const activeMaxPrice = searchParams.get("maxPrice");
 
-  // Sync local state with URL params
-  useEffect(() => {
-    setSearchQuery(activeSearch || "");
-    setPriceRange([
-      activeMinPrice ? parseFloat(activeMinPrice) : MIN_PRICE,
-      activeMaxPrice ? parseFloat(activeMaxPrice) : MAX_PRICE,
-    ]);
-  }, [activeSearch, activeMinPrice, activeMaxPrice]);
+  // Local state for search/price inputs - initialized from URL params
+  // Note: These don't sync back from URL changes to avoid re-render issues
+  const [searchQuery, setSearchQuery] = useState(() => activeSearch || "");
+  const [priceRange, setPriceRange] = useState<[number, number]>(() => [
+    activeMinPrice ? parseFloat(activeMinPrice) : MIN_PRICE,
+    activeMaxPrice ? parseFloat(activeMaxPrice) : MAX_PRICE,
+  ]);
 
   const activeFilters = useMemo(() => {
     const filters: { key: string; value: string; label: string }[] = [];
@@ -351,35 +382,6 @@ export function FilterBar() {
       setActiveTab("main");
     }
   };
-
-  // Quick filter chips for horizontal scroll
-  const QuickFilters = () => (
-    <div className="flex items-center gap-2.5 overflow-x-auto hide-scrollbar pb-1 -mx-1 px-1">
-      {/* Types - Show first 4 */}
-      {PRODUCT_TYPES.slice(0, 4).map((type) => (
-        <FilterChip
-          key={type}
-          label={type}
-          isActive={activeType === type}
-          onClick={() => toggleFilter("type", type)}
-        />
-      ))}
-
-      {/* Divider */}
-      <div className="w-px h-6 bg-border/60 mx-1 shrink-0" />
-
-      {/* Sizes - Show first 4 */}
-      {PRODUCT_SIZES.slice(0, 4).map((size) => (
-        <FilterChip
-          key={size}
-          label={size}
-          isActive={activeSize === size}
-          onClick={() => toggleFilter("size", size)}
-          className="px-3.5 min-w-[3rem]"
-        />
-      ))}
-    </div>
-  );
 
   // Render content based on active tab
   const renderSheetContent = () => {
@@ -802,7 +804,11 @@ export function FilterBar() {
           </div>
 
           {/* Quick Filters Row */}
-          <QuickFilters />
+          <QuickFilters
+            activeType={activeType}
+            activeSize={activeSize}
+            toggleFilter={toggleFilter}
+          />
 
           {/* Active Filters Pills */}
           {hasFilters && (

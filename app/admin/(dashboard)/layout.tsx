@@ -1,6 +1,9 @@
 import { Sidebar } from "@/components/admin/sidebar";
 import { getUser, getShop } from "@/lib/actions/auth";
 
+// Force dynamic rendering to prevent prerender errors with auth
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboardLayout({
   children,
 }: {
