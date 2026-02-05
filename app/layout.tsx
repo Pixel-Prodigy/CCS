@@ -3,6 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
+// Force dynamic rendering for all pages to prevent prerender errors
+// This is necessary because the app uses authentication via cookies
+export const dynamic = "force-dynamic";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
