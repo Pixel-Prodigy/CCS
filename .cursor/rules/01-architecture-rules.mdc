@@ -1,0 +1,42 @@
+---
+description: Architecture rules — App Router, separation of concerns, data flow
+alwaysApply: true
+---
+
+# Architecture Rules
+
+## High-Level Architecture
+
+- Next.js App Router is mandatory.
+- Server Components by default.
+- Client Components ONLY when needed.
+- Business logic NEVER lives in components.
+
+## Separation of Concerns
+
+- UI Layer → `/components`
+- Business Logic → `/lib`
+- Data Access → `/lib/db`
+- External Services (AI, Uploads) → `/lib/*`
+- API Routes → `/app/api`
+
+No file should do more than ONE job.
+
+## AI Integration Rule
+
+- All AI logic MUST be abstracted.
+- Direct API calls to FASHN are FORBIDDEN in components.
+- Only `/lib/ai/fashn.ts` may talk to FASHN API.
+
+## Data Flow Rule
+
+UI → Server Action / API → Service Layer → DB / AI
+
+Never skip layers.
+
+## Naming
+
+- Folders: kebab-case
+- Files: kebab-case
+- Components: PascalCase
+- Functions: camelCase

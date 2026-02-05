@@ -1,0 +1,52 @@
+---
+description: Approved libraries, Prisma, env vars — no new libs without justification
+alwaysApply: true
+---
+
+# Library & Tooling Rules
+
+## Approved Libraries
+
+### UI
+
+- shadcn/ui
+- Tailwind CSS
+- lucide-react (icons)
+
+### Forms & Validation
+
+- react-hook-form
+- zod
+
+### Backend
+
+- Prisma
+- PostgreSQL
+- NextAuth
+
+### Images
+
+- UploadThing OR Cloudinary (choose ONE)
+
+### AI
+
+- FASHN API ONLY (until explicitly replaced)
+
+## Library Usage Rules
+
+- Do NOT introduce a library without justification.
+- Prefer native platform features.
+- Avoid overlapping libraries (e.g., multiple form libs).
+
+## Prisma Rules
+
+- No raw SQL unless absolutely required.
+- Use relations properly.
+- Always add indexes for searchable fields.
+- Migrations must be descriptive.
+
+## Environment Variables
+
+- Never hardcode secrets.
+- All env vars must be documented.
+- Use `.env.example`.

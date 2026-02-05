@@ -1,0 +1,38 @@
+---
+description: Code style & quality — TypeScript, React, Tailwind, error handling
+globs: "**/*.ts,**/*.tsx"
+alwaysApply: false
+---
+
+# Code Style & Quality Rules
+
+## TypeScript Rules
+
+- Strict mode enabled.
+- `any` is FORBIDDEN.
+- All external data must be validated.
+- Zod is mandatory for validation.
+
+## React Rules
+
+- No unnecessary state.
+- No prop drilling beyond 2 levels.
+- No useEffect unless absolutely required.
+- Prefer server actions over client fetches.
+
+## Styling Rules
+
+- Tailwind is utility-first, NOT chaos-first.
+- shadcn/ui components must be preferred.
+- No inline styles.
+- Design tokens > random values.
+
+## Comments
+
+- No obvious comments.
+- Comment ONLY complex logic or architectural decisions.
+
+## Error Handling
+
+- All async operations must handle failure.
+- Loading, error, empty states are REQUIRED.

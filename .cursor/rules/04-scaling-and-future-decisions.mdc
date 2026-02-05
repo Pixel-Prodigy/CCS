@@ -1,0 +1,40 @@
+---
+description: Scaling, performance, DB growth, AI cost control, refactors
+alwaysApply: true
+---
+
+# Scaling & Future-Proofing Rules
+
+## Performance
+
+- Image-heavy operations must be optimized.
+- Use streaming where possible.
+- Avoid blocking server actions.
+
+## Database Growth
+
+- Assume thousands of clothes per shop.
+- Pagination is mandatory.
+- No unbounded queries.
+
+## AI Cost Control
+
+- Cache results temporarily.
+- Avoid repeated calls for same input.
+- Always track usage per shop.
+
+## Feature Expansion Rules
+
+When adding features:
+
+1. Define user value
+2. Define data impact
+3. Define performance impact
+4. Define UX changes
+
+If any of these are unclear, STOP.
+
+## Refactors
+
+- Small refactors > big rewrites
+- Breaking changes must be documented

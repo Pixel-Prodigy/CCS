@@ -1,0 +1,32 @@
+---
+description: Project philosophy & core principles for the Virtual Try-On app
+alwaysApply: true
+---
+
+# Project Philosophy & Core Principles
+
+This project is a production-grade Virtual Try-On application.
+All decisions must prioritize long-term maintainability, clarity, and UX quality.
+
+## Core Principles
+
+1. This is NOT a demo project.
+2. Every feature must be scalable.
+3. Readability > cleverness.
+4. Mobile-first ALWAYS.
+5. UX is as important as backend correctness.
+6. Avoid premature optimization, but never accept sloppy architecture.
+7. Assume another developer will maintain this code in 6 months.
+
+## Mental Model
+
+- This app will be used by:
+  - Shopkeepers (daily)
+  - Customers (in-store, fast decisions)
+- The app must feel:
+  - Calm
+  - Fast
+  - Reliable
+  - Intuitive
+
+If a decision hurts clarity or UX, it is the wrong decision.
